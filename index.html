@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionando Elementos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+    <div class="fondo" aria-hidden="true">
+        <div class="figura figura-1"></div>
+        <div class="figura figura-2"></div>
+        <div class="figura figura-3"></div>
+    </div>
+
+    <main class="contenedor">
+
+        <!--=== start ENCABEZADO ===-->
+
+        <header id="cabecera-principal" class="card header-card">
+            <div class="header-media">
+                <img id="imagen-principal" class="imagen" src="" alt="">
+            </div>
+            <div class="header-contenido">
+                <h1 id="titulo-principal" class="encabezado">Lorem ipsum dolor sit amet consectetur</h1>
+                <p id="parrafo1" class="parrafo destacado">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vehicula, nulla nec porttitor volutpat</p>
+                <p id="parrafo2" class="parrafo">ed euismod, nunc sit amet aliquam lacinia, nunc nisl aliquet nunc, eget aliquam nunc nisl sit amet nunc.</p>
+                <p id="parrafo3" class="parrafo">Praesent vitae arcu tempor neque lacinia pretium ut vitae sapien. Nunc sed velit dignissim sodales.</p>
+            </div>
+        </header>
+
+        <!--=== end ENCABEZADO ===-->    
+
+        <!--=== start SECCION DE SECCIONES ===-->
+        <section class="grid-encabezados">
+
+            <article id="seccion-one" class="card heading-card">
+                <h2 id="new" class="encabezado">Primer h2</h2>
+                <p id="parrafo4" class="parrafo">Suspendisse potenti. Nulla sed sapien vitae nunc congue efficitur. Curabitur non nulla sit amet nisl tempus.</p>
+                <p id="parrafo5" class="parrafo">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
+                <p id="parrafo6" class="parrafo">Donec rutrum congue leo eget malesuada. Cras ultricies ligula sed magna dictum porta.</p>   
+            </article>
+
+            <article id="seccion-dos" class="card heading-card">
+                <h2 id="titulo-segundo" class="encabezado">Segundo h2</h2>
+                <p id="parrafo7" class="parrafo">Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Nulla porttitor accumsan tincidunt.</p>
+                <p id="parrafo8" class="parrafo">Pellentesque in ipsum id orci porta dapibus. Cras ultricies ligula sed magna dictum porta.</p>
+                <p id="parrafo9" class="parrafo">Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus.</p>   
+            </article>
+
+            <article id="seccion-tres" class="card heading-card">
+                <h3 id="titulo-tercero" class="encabezado">Primer h3</h3>
+                <p id="parrafo10" class="parrafo">Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Donec sollicitudin molestie malesuada.</p>
+                <p id="parrafo11" class="parrafo">Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit.</p>
+                <p id="parrafo12" class="parrafo">Mauris blandit aliquet elit, eget tintidunt nibh pulvinar. Vestibulum ac daim sit amet quam vehicula</p>   
+            </article>
+
+            <article id="seccion-cuatro" class="card heading-card">
+                <h3 id="titulo-cuatro" class="encabezado">Segundo h3</h3>
+                <p id="parrafo13" class="parrafo">Quisque velit nisi, pretium ut laciniia in, elementum id en im. Cras ultricies ligula sed magna dictum.</p>
+                <p id="parrafo14" class="parrafo">Nulla porttitor accumsan tincidunt. Proin eget tortor risus viverra maxims  lorem ipsum.</p>
+                <p id="parrafo15" class="parrafo">Vestibulum ante ipsum primis in faucibus orci luctus et ul trices posuere cubilla curae.</p>   
+            </article>
+        
+        </section> 
+        <!--=== end SECCION DE SECCIONES ===-->
+
+        <section id="seccion-listas" class="card lista-card">
+            <ul id="lista-desordenada" class="lista">
+                <li id="item1" class="item-lista">Primer elemento de la lista</li>
+                <li id="item2" class="item-lista">Segundo elemento de la lista</li>
+                <li id="item3" class="item-lista">Tercer elemento de la lista</li>
+            </ul>        
+            <ol id="lista-ordenada" class="lista">            
+            </ol>
+        </section>
+
+        <!--=== start-BOTONES/SWITCHES ===-->
+
+        <section id="seccion-controles" class="card controles-card">
+
+            <div class="switch-item">
+                <label class="switch">
+                    <input type="checkbox" id="switch-color">
+                    <span class="switch-track"><span class="switch-thumb"></span></span>
+                </label>
+                <span class="switch-label">Color en encabezados</span>
+            </div>
+
+            <div class="switch-item">
+                <label class="switch">
+                    <input type="checkbox" id="switch-fuente">
+                    <span class="switch-track"><span class="switch-thumb"></span></span>
+                </label>
+                <span class="switch-label">Fuente en encabezados</span>
+            </div>
+
+            <div class="switch-item">
+                <label class="switch">
+                    <input type="checkbox" id="switch-texto">
+                    <span class="switch-track"><span class="switch-thumb"></span></span>
+                </label>
+                <span class="switch-label">Texto en encabezados</span>
+            </div>
+
+            <div class="switch-item">
+                <label class="switch">
+                    <input type="checkbox" id="switch-ruta">
+                    <span class="switch-track"><span class="switch-thumb"></span></span>
+                </label>
+                <span class="switch-label">Ruta de la imagen</span>
+            </div>
+
+        </section>
+        <!--=== end-BOTONES/SWITCHES ===-->
+
+        <!--=== start-BOTONES JS SEMANA 5 ===-->
+
+        <section id="seccion-acciones" class="card acciones-card">
+            <button id="btn-destacar-pares" class="btn">Destacar Pares</button>
+            <button id="btn-destacar-impares" class="btn">Destacar Impares</button>
+            <button id="btn-agrandar-destacado" class="btn">Agrandar Destacado</button>
+            <button id="btn-agregar-lista" class="btn">Agregar lista</button>
+        </section>
+
+        <!--=== end-BOTONES JS SEMANA 5 ===-->
+
+    </main>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="assets/js/script.js"></script>
+
+</body>
+</html>

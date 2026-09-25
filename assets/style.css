@@ -1,0 +1,323 @@
+
+:root {
+  --rojo:#e0263f;
+  --rojo-oscuro: #8a1226;
+  --fondo-1: #0a0508;
+  --fondo-2: #1c0710;
+  --texto: #f4eef0;
+  --texto-suave: rgba(244, 238, 240, 0.68);
+  --borde: rgba(255, 255, 255, 0.12);
+  --vidrio: rgba(255, 255, 255, 0.055);
+  --radio: 22px;
+  --fuente-titulo: "Fraunces", serif;
+  --fuente-cuerpo: "Inter", sans-serif;
+  --fuente-alterna: "Roboto", sans-serif;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+/* Estilos generales */
+body {
+  background: var(--fondo-1);
+  color: var(--texto);
+  font-family: var(--fuente-cuerpo);
+  font-size: 15.5px;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* ====== Fondo decorativo ====== */
+
+.fondo {
+  position: fixed;
+  inset: 0; 
+  z-index: -1;
+  background: radial-gradient(circle at 20% 20%, var(--fondo-2), var(--fondo-1) 60%);
+  overflow: hidden;
+}
+
+.figura {
+  position: absolute; 
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.55;
+}
+
+.figura-1 {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, var(--rojo) 0%, transparent 70%);
+  top: -140px;
+  left: -100px;
+}
+
+.figura-2 {
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle, var(--rojo-oscuro) 0%, transparent 70%);
+  bottom: -220px;
+  right: -140px;
+}
+
+.figura-3 {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, #ff5470 0%, transparent 70%);
+  top: 40%;
+  left: 60%;
+  opacity: 0.35;
+}
+ 
+/* ====== CONTENEDOR ====== */
+
+.contenedor {
+  max-width: 1240px;
+  margin: 0 auto; 
+  padding: clamp(16px, 2.5vw, 32px);
+  display: flex;
+  flex-direction: column; 
+  gap: clamp(14px, 1.6vw, 20px);
+}
+
+/* ====== CARD GLASS ====== */
+
+.card {
+  background: var(--vidrio);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+/* ====== ENCABEZADOS / PÁRRAFOS ====== */ 
+
+.encabezado {
+  font-family: var(--fuente-titulo);
+  font-weight: 600;
+  color: var(--texto);
+  margin: 0 0 8px;
+  transition: color 0.35s ease, font-family 0.2s ease;
+}
+
+.parrafo {
+  margin: 0 0 6px;
+  color: var(--texto-suave);
+  font-size: 0.92rem;
+}
+
+/* ====== HEADER ====== */
+
+.header-card {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  align-items: stretch;
+  overflow: hidden;
+  min-height: 220px;
+}
+
+.header-media {
+  position: relative;
+  overflow: hidden;
+}
+
+.header-media .imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+/* mientras src esté vacío, la imagen queda invisible y se ve el placeholder de vidrio */
+
+.header-media .imagen[src=""]{
+  opacity: 0;
+  filter: contrast(1.05) brightness(0.9);
+}
+
+.header-media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(224, 38, 63, 0.45), rgba(10, 5, 8, 0.65));
+  mix-blend-mode: multiply;
+  display: none;
+}
+
+.header-contenido {
+  padding: clamp(20px, 3vw, 34px);
+  display: flex; 
+  flex-direction: column;
+  justify-content: center; 
+}
+
+.header-contenido .encabezado {
+  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+}
+
+/* ====== GRID ENCABEZADOS ====== */
+
+.grid-encabezados {
+  display: grid; 
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(12px, 1.6vw, 18px);
+}
+
+.heading-card {
+  padding: clamp(16px, 1.8vw, 22px);
+}
+
+.heading-card h2.encabezado {
+  font-size: 1.3rem;
+}
+
+.heading-card h3.encabezado {
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+/* ====== LISTAS ====== */
+
+.lista-card {
+  padding: clamp(16px, 1.8vw, 22px);
+}
+
+.lista {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.item-lista {
+  color: var(--texto-suave);
+  font-size: 0.92rem;
+  margin: 6px;
+}
+
+/* ====== CONTROLES / SWITCHES ====== */
+
+.controles-card {
+  padding: clamp(14px, 1.6vw, 20px) clamp(16px, 2vw, 26px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+
+.switch-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block; 
+}
+
+.switch input{
+  position: absolute; 
+  opacity: 0;
+  width: 100%; 
+  height:100%; 
+  margin: 0; 
+  cursor: pointer;
+}
+
+.switch-track {
+  display: block; 
+  width: 46px;
+  height: 26px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid var(--borde);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.switch-thumb {
+  position: absolute; 
+  top: 2px; 
+  left: 2px; 
+  width: 22px; 
+  height: 22px; 
+  border-radius: 50%; 
+  background: var(--texto); 
+  transition: transform 0.25s ease;
+}
+
+.switch input:checked + .switch-track {
+  background: var(--rojo);
+  border-color: var(--rojo);
+}
+
+.switch input:checked + .switch-track .switch-thumb {
+  transform: translateX(20px);
+}
+
+.switch input:focus-visible + .switch-track {
+  outline: 2px solid var(--rojo);
+  outline-offset: 2px;
+}
+
+.switch-label {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+  white-space: nowrap;
+}
+
+/* ====== ACCIONES / BOTONES JS ====== */
+ 
+.acciones-card {
+  padding: clamp(14px, 1.6vw, 20px) clamp(16px, 2vw, 26px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+ 
+.btn {
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--texto);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.15s ease;
+}
+ 
+.btn:hover {
+  background: var(--rojo);
+  border-color: var(--rojo);
+  transform: translateY(-1px);
+}
+ 
+.btn:active {
+  transform: translateY(0);
+}
+ 
+/* ====== RESPONSIVE ====== */
+
+@media (max-width: 860px) {
+  .header-card {
+    grid-template-columns: 1fr;
+  }
+  .header-media {
+    min-height: 160px;
+  }
+  .grid-encabezados {
+    grid-template-columns: 1fr;
+  }
+  .controles-card {
+    justify-content: flex-start;
+  }
+}
