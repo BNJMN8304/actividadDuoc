@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efectos · Integrando librerías y plugins</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥊</text></svg>">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+    <div class="fondo" aria-hidden="true">
+        <div class="figura figura-1"></div>
+        <div class="figura figura-2"></div>
+        <div class="figura figura-3"></div>
+    </div>
+
+    <main class="contenedor">
+
+        <!--=== AVISO: se muestra si el usuario NO pasó por el formulario ===-->
+        <section id="bloqueo" class="card intro-card" hidden>
+            <h1 class="encabezado">Primero regístrate</h1>
+            <p class="parrafo">Para ver los efectos de la semana 8 tienes que completar el formulario de registro.</p>
+            <a href="index.html#seccion-registro" class="btn btn-enviar">Ir al formulario</a>
+        </section>
+
+        <!--=== CONTENIDO: se muestra después del registro ===-->
+        <div id="contenido-efectos" class="contenido-efectos" hidden>
+
+            <header class="card intro-card">
+                <span class="etiqueta">Semana 8 · Librerías y plugins</span>
+                <h1 class="encabezado">Efectos desbloqueados</h1>
+                <p id="saludo" class="parrafo destacado-intro"></p>
+                <p class="parrafo">Esta página usa tres plugins de jQuery y JavaScript: <strong>AOS</strong> para animar al hacer scroll, <strong>Fancybox</strong> para la galería y <strong>Owl Carousel</strong> para el carrusel.</p>
+                <div class="intro-acciones">
+                    <a href="#seccion-animaciones" class="btn btn-enviar">Ver efectos ↓</a>
+                    <a href="index.html" class="btn">Volver al inicio</a>
+                </div>
+            </header>
+
+            <!--=== Ejercicio 2: DIVS ANIMADOS (AOS) ===-->
+            <section id="seccion-animaciones" class="card media-card">
+                <span class="etiqueta">Plugin: AOS</span>
+                <h2 class="encabezado">Animaciones al hacer scroll</h2>
+                <p class="parrafo">Cada div tiene un atributo <code>data-aos</code> distinto. Sube y baja para repetir la animación.</p>
+                <div class="grid-animados">
+                    <div class="card caja-animada" data-aos="fade-right"><span>Div 1</span>Aparece desde la izquierda<code>fade-right</code></div>
+                    <div class="card caja-animada" data-aos="flip-right"><span>Div 2</span>Voltea derecha<code>flip-right</code></div>
+                    <div class="card caja-animada" data-aos="zoom-in-up"><span>Div 3</span>Zoom abajo<code>zoom-in-up</code></div>
+                    <div class="card caja-animada" data-aos="fade-up" data-aos-duration="5000"><span>Div 4</span>Aparece arriba con retardo<code>fade-up · 5000 ms</code></div>
+                </div>
+            </section>
+
+            <!--=== Ejercicio 3: GALERÍA (Fancybox) ===-->
+            <section id="seccion-galeria" class="card media-card">
+                <span class="etiqueta">Plugin: Fancybox</span>
+                <h2 class="encabezado">Galería de fotos</h2>
+                <p class="parrafo">Haz clic en una foto para verla en grande. Dentro de la galería puedes pasar de una foto a otra con las flechas.</p>
+                <!-- Las 4 imágenes se insertan con JavaScript desde un array -->
+                <div id="galeria"></div>
+            </section>
+
+            <!--=== Ejercicio 4: CARRUSEL (Owl Carousel) ===-->
+            <section id="seccion-carrusel" class="card media-card">
+                <span class="etiqueta">Plugin: Owl Carousel</span>
+                <h2 class="encabezado">Carrusel</h2>
+                <p class="parrafo">Avanza solo cada 4 segundos y se pausa al pasar el mouse. Muestra 1, 2 o 3 imágenes según el ancho de la pantalla.</p>
+                <!-- owl-carousel y owl-theme son las clases que pide el plugin -->
+                <div id="carrusel" class="owl-carousel owl-theme"></div>
+            </section>
+
+        </div>
+
+    </main>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+<script src="assets/efectos.js"></script>
+
+</body>
+</html>
