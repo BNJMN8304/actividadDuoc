@@ -1,6 +1,4 @@
 // ====== SWITCH: color encabezados ====== //
-// (se mantiene igual, en JavaScript nativo: no forma parte de las
-// funciones que pide traducir esta actividad)
  
 const switchColor = document.getElementById("switch-color");
 switchColor.addEventListener('change', cambiarColor);
@@ -49,7 +47,6 @@ function cambiarRuta(evento) {
     primeraImagen.src = activo ? urlImagen : '';
 }
 
-// ====== EXP 3 - S7: Traducción a jQuery ====== //
 
 $(function () {
  
@@ -223,7 +220,7 @@ $(document).ready(function () {
         error.insertAfter(elemento);
       }
     },
-    // Si todo está bien: guarda el nombre y lleva a la página de efectos
+    // Si todo está bien guarda el nombre y lleva a la página de efectos
     submitHandler: function (formulario) {
       const nombre = $("#nombres").val().trim();
       guardarUsuario(nombre);
