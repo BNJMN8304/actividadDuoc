@@ -1,0 +1,784 @@
+/* =========================================================
+   Aletier Bemin — styles.css
+   ========================================================= */
+
+/* ---------- 1. Variables (guía de estilos Semana 3) ---------- */
+:root {
+  /* Paleta */
+  --ab-celeste: #6EA8FF;
+  --ab-azul: #0A5BD3;
+  --ab-blanco: #FFFFFF;
+  --ab-negro: #111111;
+  --ab-grafito: #2B2B2B;
+  --ab-marino: #0B1F3A;
+
+  /* Tipografías */
+  --ab-font-titulo: "Space Grotesk", system-ui, sans-serif;
+  --ab-font-texto: "Inter", system-ui, sans-serif;
+
+  /* Escala tipográfica: H1 44px, H2 36px, body 23px en escritorio.
+     En rem + clamp para que escale en móvil y respete el zoom del usuario */
+  --ab-fs-h1: clamp(1.75rem, 1.2rem + 2.4vw, 2.75rem);
+  --ab-fs-h2: clamp(1.375rem, 1.1rem + 1.2vw, 2.25rem);
+  --ab-fs-body: clamp(1rem, 0.9rem + 0.45vw, 1.4375rem);
+
+  /* Efecto glass */
+  --ab-glass-bg: rgba(255, 255, 255, 0.10);
+  --ab-glass-borde: rgba(255, 255, 255, 0.28);
+  --ab-radio: 1.25rem;
+
+  /* Puente hacia las variables de Bootstrap */
+  --bs-body-font-family: var(--ab-font-texto);
+  --bs-body-font-size: var(--ab-fs-body);
+  --bs-body-bg: var(--ab-marino);
+  --bs-body-color: var(--ab-blanco);
+  --bs-link-color: var(--ab-celeste);
+  --bs-link-hover-color: var(--ab-blanco);
+}
+
+/* ---------- 2. Base ---------- */
+body {
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--ab-marino) 0%, var(--ab-negro) 100%);
+}
+
+h1, h2, h3 {
+  font-family: var(--ab-font-titulo);
+  font-weight: 500;
+}
+
+h1 { font-size: var(--ab-fs-h1); }
+h2 { font-size: var(--ab-fs-h2); font-family: var(--ab-font-texto); font-weight: 600; }
+
+:focus-visible {
+  outline: 0.1875rem solid var(--ab-celeste);
+  outline-offset: 0.1875rem;
+}
+
+/* ---------- 3. Botones (estados de la guía) ---------- */
+.btn-ab {
+  --bs-btn-color: var(--ab-blanco);
+  --bs-btn-bg: var(--ab-azul);
+  --bs-btn-border-color: var(--ab-azul);
+  --bs-btn-hover-color: var(--ab-marino);
+  --bs-btn-hover-bg: var(--ab-celeste);
+  --bs-btn-hover-border-color: var(--ab-celeste);
+  --bs-btn-active-color: var(--ab-marino);
+  --bs-btn-active-bg: var(--ab-blanco);
+  --bs-btn-active-border-color: var(--ab-blanco);
+  --bs-btn-disabled-bg: var(--ab-grafito);
+  --bs-btn-disabled-border-color: var(--ab-grafito);
+  --bs-btn-border-radius: 2rem;
+  --bs-btn-padding-x: 1.5rem;
+  font-family: var(--ab-font-texto);
+  font-weight: 600;
+}
+
+.btn-ab-glass {
+  --bs-btn-color: var(--ab-blanco);
+  --bs-btn-bg: var(--ab-glass-bg);
+  --bs-btn-border-color: var(--ab-glass-borde);
+  --bs-btn-hover-color: var(--ab-marino);
+  --bs-btn-hover-bg: var(--ab-blanco);
+  --bs-btn-hover-border-color: var(--ab-blanco);
+  --bs-btn-active-bg: var(--ab-celeste);
+  --bs-btn-active-color: var(--ab-marino);
+  --bs-btn-border-radius: 50%;
+  backdrop-filter: blur(0.5rem);
+}
+
+/* ---------- 4. Header ---------- */
+.ab-header {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 3rem 1fr 3rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.ab-logo { justify-self: center; }
+.ab-logo img { height: 2.5rem; width: auto; }
+
+.ab-menu-btn {
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* Menú desplegable (offcanvas) */
+.ab-offcanvas {
+  --bs-offcanvas-bg: var(--ab-marino);
+  --bs-offcanvas-color: var(--ab-blanco);
+  border-right: 1px solid var(--ab-glass-borde);
+}
+
+.ab-nav-link {
+  display: block;
+  padding: 0.75rem 0;
+  color: var(--ab-blanco);
+  text-decoration: none;
+  font-family: var(--ab-font-titulo);
+  font-size: 1.25rem;
+  border-bottom: 1px solid var(--ab-glass-borde);
+}
+
+.ab-nav-link:hover,
+.ab-nav-link[aria-current="page"] { color: var(--ab-celeste); }
+
+/* ---------- 5. Escena con fondos por página ---------- */
+.ab-escena {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Capa fija: no se estira ni se mueve, es decir,el contenido hace scroll por encima */
+.ab-fondos {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+/* Capa oscura para asegurar contraste del texto sobre la foto */
+.ab-fondos::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 31, 58, 0.55) 0%, rgba(17, 17, 17, 0.8) 100%);
+}
+
+.ab-fondo {
+  position: absolute;
+  inset: 0;
+  background-color: var(--ab-marino);
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.ab-fondo.activo { opacity: 1; }
+
+.ab-fondo-inicio       { background-image: url("../img/fondo-home.jpeg"); }
+.ab-fondo-configurador { background-image: url("../img/fondo-configurador.jpeg"); }
+.ab-fondo-galeria      { background-image: url("../img/fondo-galeria.jpeg"); }
+.ab-fondo-perfil       { background-image: url("../img/fondo-perfil.jpeg"); }
+.ab-fondo-servicios    { background-image: url("../img/fondo-servicios.jpeg"); }
+
+/* ---------- 6. Carrusel circular vertical ---------- */
+.ab-rueda-wrap {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-bottom: 2rem;
+}
+
+.ab-rueda {
+  position: relative;
+  width: 100%;
+  height: clamp(28rem, 66svh, 40rem);
+  perspective: 70rem;
+  touch-action: none;        
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.ab-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(88%, 26rem);
+  height: 62%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  background: var(--ab-glass-bg);
+  border: 1px solid var(--ab-glass-borde);
+  border-radius: var(--ab-radio);
+  backdrop-filter: blur(0.875rem);
+  -webkit-backdrop-filter: blur(0.875rem);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ab-card[data-offset="0"]  { transform: translate(-50%, -50%) scale(1); opacity: 1; z-index: 3; pointer-events: auto; }
+.ab-card[data-offset="-1"] { transform: translate(-50%, -78%) scale(0.88) rotateX(12deg); opacity: 0.6; z-index: 2; pointer-events: auto; cursor: pointer; }
+.ab-card[data-offset="1"]  { transform: translate(-50%, -22%) scale(0.88) rotateX(-12deg); opacity: 0.6; z-index: 2; pointer-events: auto; cursor: pointer; }
+.ab-card[data-offset="-2"] { transform: translate(-50%, -90%) scale(0.76); z-index: 1; }
+.ab-card[data-offset="2"]  { transform: translate(-50%, -10%) scale(0.76); z-index: 1; }
+
+.ab-card:not([data-offset="0"]) a { pointer-events: none; }
+
+.ab-card-icono {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.75rem;
+  color: var(--ab-celeste);
+  background: rgba(10, 91, 211, 0.25);
+  border: 1px solid var(--ab-glass-borde);
+  border-radius: 1rem;
+}
+
+.ab-card-texto p { margin-bottom: 1rem; font-weight: 200; }
+
+/* Controles arriba / abajo */
+.ab-controles {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ab-controles .btn { width: 2.75rem; height: 2.75rem; padding: 0; font-size: 1.25rem; }
+
+/* ---------- 7. Secciones y footer ---------- */
+.ab-seccion { padding-block: 4rem; }
+
+.ab-glass {
+  height: 100%;
+  padding: 1.5rem;
+  background: var(--ab-glass-bg);
+  border: 1px solid var(--ab-glass-borde);
+  border-radius: var(--ab-radio);
+}
+
+.ab-footer {
+  padding-block: 2.5rem;
+  background: var(--ab-negro);
+  border-top: 1px solid var(--ab-glass-borde);
+}
+
+.ab-footer a { color: var(--ab-celeste); }
+.ab-footer a:hover { color: var(--ab-blanco); }
+
+/* ---------- 6b. Título de la card (no es encabezado del documento) ---------- */
+.ab-card-titulo {
+  margin-bottom: 0.5rem;
+  font-family: var(--ab-font-texto);
+  font-size: var(--ab-fs-h2);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* ---------- 7b. H1 con logotipo + destello metálico ---------- */
+.ab-h1-logo {
+  position: relative;
+  width: min(92%, 38rem);
+  margin: 0 auto 1.5rem;
+  aspect-ratio: 219 / 21;
+}
+
+.ab-h1-logo img { display: block; width: 100%; height: 100%; }
+
+/* Franja de luz que pasa solo por las letras */
+.ab-h1-logo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.95) 50%, transparent 65%) no-repeat;
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  -webkit-mask: url("../img/logotipo.svg") center / contain no-repeat;
+  mask: url("../img/logotipo.svg") center / contain no-repeat;
+  animation: ab-destello 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes ab-destello {
+  0%   { background-position: 100% 0; }
+  45%  { background-position: 0% 0; }
+  100% { background-position: 0% 0; }
+}
+
+.ab-lead { max-width: 38rem; }
+
+/* ---------- 7c. Borde luminoso azul que recorre la caja ---------- */
+@property --ab-angulo {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes ab-giro { to { --ab-angulo: 360deg; } }
+
+.ab-brillo { position: relative; isolation: isolate; }
+
+.ab-brillo::before,
+.ab-brillo::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+  background: conic-gradient(from var(--ab-angulo), transparent 0 55%, var(--ab-azul) 70%, var(--ab-celeste) 85%, var(--ab-blanco) 92%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: ab-giro 5s linear infinite;
+}
+
+.ab-brillo::before { inset: 0; padding: 2px; }
+
+.ab-brillo::after { inset: -5px; padding: 7px; filter: blur(6px); opacity: 0.8; }
+
+/* ---------- 7d. Servicios con imagen ---------- */
+.ab-servicio { display: flex; flex-direction: column; gap: 0.75rem; height: 100%; }
+
+.ab-servicio img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 1rem;
+  background: var(--ab-grafito);
+}
+
+.ab-trabajos {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.ab-trabajos figure { flex: 0 0 72%; margin: 0; scroll-snap-align: start; }
+
+.ab-trabajos img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 1rem;
+  background: var(--ab-grafito);
+}
+
+@media (min-width: 768px) { .ab-trabajos figure { flex-basis: 32%; } }
+
+/* ---------- 7e. Footer: redes sociales y legales ---------- */
+.ab-social .btn {
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+}
+
+.ab-legales { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* ---------- 10. Configurador (paso 1 y 2) ---------- */
+.ab-config { max-width: 40rem; padding-bottom: 4rem; }
+
+.ab-progreso {
+  --bs-progress-bg: var(--ab-blanco);
+  --bs-progress-bar-bg: var(--ab-azul);
+  --bs-progress-height: 0.375rem;
+}
+
+/* Botón en vidrio con forma de píldora */
+.btn-ab-vidrio {
+  --bs-btn-bg: var(--ab-glass-bg);
+  --bs-btn-border-color: var(--ab-glass-borde);
+  backdrop-filter: blur(0.5rem);
+}
+
+/* Subida de foto */
+.ab-dropzone {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: 0.5rem;
+  min-height: 11rem;
+  padding: 1.5rem;
+  text-align: center;
+  background: var(--ab-glass-bg);
+  border: 1px solid var(--ab-glass-borde);
+  border-radius: var(--ab-radio);
+  backdrop-filter: blur(0.875rem);
+  -webkit-backdrop-filter: blur(0.875rem);
+  cursor: pointer;
+}
+
+.ab-dropzone:hover,
+.ab-dropzone:focus-within { border-color: var(--ab-celeste); }
+.ab-dropzone input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.ab-dropzone i { font-size: 2rem; }
+.ab-preview { max-width: 100%; max-height: 12rem; border-radius: 0.75rem; object-fit: cover; }
+
+/* Pestañas y catálogo */
+.ab-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.ab-tab {
+  padding: 0.4rem 1rem;
+  color: var(--ab-blanco);
+  font-size: 0.9rem;
+  background: var(--ab-glass-bg);
+  border: 1px solid var(--ab-glass-borde);
+  border-radius: 2rem;
+}
+
+.ab-tab[aria-selected="true"] { background: rgba(10, 91, 211, 0.4); border-color: var(--ab-celeste); }
+
+.ab-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(5.25rem, 1fr)); gap: 0.75rem; }
+
+.ab-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  min-height: 4.75rem;
+  padding: 0.5rem;
+  color: var(--ab-blanco);
+  font-size: 0.9rem;
+  background: var(--ab-glass-bg);
+  border: 1px solid var(--ab-glass-borde);
+  border-radius: 1rem;
+}
+
+.ab-tile--color { background: var(--tile-color); border-color: transparent; }
+.ab-tile--color i { font-size: 1.5rem; filter: drop-shadow(0 0 0.1875rem rgba(0, 0, 0, 0.8)); }
+.ab-tile[aria-pressed="true"] { outline: 0.1875rem solid var(--ab-celeste); outline-offset: 0.125rem; }
+.ab-tile small { font-size: 0.75rem; opacity: 0.85; }
+
+/* Comparador antes / después */
+.ab-comparador {
+  --ab-corte: 50%;
+  position: relative;
+  aspect-ratio: var(--ab-ratio, 4 / 3);
+  overflow: hidden;
+  background: var(--ab-grafito);
+  border-radius: var(--ab-radio);
+}
+
+.ab-comparador img,
+.ab-comparador canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ab-comparador canvas { clip-path: inset(0 0 0 var(--ab-corte)); }
+
+.ab-comp-linea {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--ab-corte);
+  width: 0.25rem;
+  background: var(--ab-blanco);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.ab-comp-linea::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: var(--ab-blanco);
+  border-radius: 50%;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+  transform: translate(-50%, -50%);
+}
+
+.ab-comp-etiqueta {
+  position: absolute;
+  top: 0.75rem;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.85rem;
+  background: rgba(17, 17, 17, 0.55);
+  border: 1px solid var(--ab-glass-borde);
+  border-radius: 2rem;
+  pointer-events: none;
+}
+
+.ab-comp-etiqueta--antes { left: 0.75rem; }
+.ab-comp-etiqueta--despues { right: 0.75rem; border-color: var(--ab-celeste); }
+
+/* El range cubre toda la imagen e invisible: se arrastra desde cualquier punto */
+.ab-comparador input[type="range"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  touch-action: pan-y;
+}
+
+.ab-comparador:focus-within { outline: 0.1875rem solid var(--ab-celeste); outline-offset: 0.1875rem; }
+
+/* Cotización */
+.ab-cotiza { width: 100%; }
+.ab-cotiza td, .ab-cotiza th { padding: 0.35rem 0; font-weight: 400; }
+.ab-cotiza td:last-child { text-align: right; }
+.ab-cotiza tfoot th, .ab-cotiza tfoot td { padding-top: 0.75rem; font-weight: 600; border-top: 1px solid var(--ab-glass-borde); }
+
+/* ---------- 11. Agendar (paso 3) ---------- */
+.ab-progreso-completo { width: 100%; }
+.ab-cotiza th { text-align: left; }
+.ab-error { min-height: 1.5rem; color: #FF9B9B; }
+
+/* ---------- 12. Servicios ---------- */
+.ab-seccion-linea {
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 0.125rem solid var(--ab-blanco);
+  scroll-margin-top: 1rem;
+}
+
+#personalizacion,
+#mantencion { scroll-margin-top: 1rem; }
+
+/* Card de servicio */
+.ab-svc {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  backdrop-filter: blur(0.875rem);
+  -webkit-backdrop-filter: blur(0.875rem);
+}
+
+.ab-svc img {
+  flex: 0 0 7rem;
+  width: 7rem;
+  height: 7rem;
+  object-fit: cover;
+  background: var(--ab-grafito);
+  border-radius: 0.75rem;
+}
+
+.ab-svc h3 { font-family: var(--ab-font-texto); font-size: 1.15rem; font-weight: 600; }
+.ab-svc p { margin-bottom: 0.75rem; font-weight: 200; }
+.ab-svc a { color: var(--ab-blanco); }
+.ab-svc:hover,
+.ab-svc:focus-within { border-color: var(--ab-celeste); }
+ 
+/* Calendario glass */
+.ab-cal { --ab-libre: #46C37B; --ab-reservado: #FF6B6B; backdrop-filter: blur(0.875rem); -webkit-backdrop-filter: blur(0.875rem); }
+ 
+.ab-cal-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  text-transform: capitalize;
+}
+ 
+.ab-cal-cabecera .btn { width: 2.5rem; height: 2.5rem; padding: 0; }
+.ab-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.25rem; }
+.ab-cal-semana { padding-bottom: 0.25rem; text-align: center; font-size: 0.8rem; opacity: 0.7; }
+ 
+.ab-dia {
+  aspect-ratio: 1;
+  color: var(--ab-blanco);
+  font-size: 0.95rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+}
+ 
+.ab-dia[data-estado="libre"] { background: rgba(70, 195, 123, 0.12); border-color: var(--ab-libre); }
+.ab-dia[data-estado="libre"]:hover { background: rgba(70, 195, 123, 0.3); }
+.ab-dia[data-estado="reservado"] { background: rgba(255, 107, 107, 0.12); border-color: var(--ab-reservado); text-decoration: line-through; }
+.ab-dia[data-estado="cerrado"],
+.ab-dia[data-estado="pasado"] { opacity: 0.35; }
+.ab-dia:disabled { cursor: not-allowed; }
+.ab-dia[aria-pressed="true"] { background: var(--ab-azul); border-color: var(--ab-celeste); font-weight: 600; }
+ 
+.ab-cal-leyenda { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin-top: 1rem; font-size: 0.85rem; }
+.ab-punto { display: inline-block; width: 0.75rem; height: 0.75rem; margin-right: 0.4rem; border-radius: 50%; }
+.ab-punto--libre { background: var(--ab-libre); }
+.ab-punto--reservado { background: var(--ab-reservado); }
+.ab-punto--elegido { background: var(--ab-azul); border: 1px solid var(--ab-celeste); }
+ 
+/* Horas */
+.ab-horas { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+ 
+.ab-hora {
+  padding: 0.4rem 1rem;
+  color: var(--ab-blanco);
+  background: var(--ab-glass-bg);
+  border: 1px solid var(--ab-glass-borde);
+  border-radius: 2rem;
+}
+ 
+.ab-hora[aria-pressed="true"] { background: rgba(10, 91, 211, 0.5); border-color: var(--ab-celeste); }
+.ab-hora:disabled { opacity: 0.4; text-decoration: line-through; cursor: not-allowed; }
+
+/* ---------- 13. Mi cuenta ---------- */
+.ab-perfil { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+
+.ab-avatar {
+  flex: 0 0 3.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  font-size: 1.75rem;
+  background: var(--ab-glass-bg);
+  border: 1px solid var(--ab-glass-borde);
+  border-radius: 50%;
+}
+
+.ab-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Chips con scroll horizontal */
+.ab-chips { display: flex; gap: 0.5rem; padding-bottom: 0.5rem; overflow-x: auto; scrollbar-width: none; }
+.ab-chips::-webkit-scrollbar { display: none; }
+.ab-chips .ab-tab { flex: 0 0 auto; white-space: nowrap; }
+
+/* Foto con placeholder detrás: si la imagen no carga, se ve el placeholder */
+.ab-foto {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.65);
+  background: var(--ab-grafito);
+  border: 1px solid var(--ab-glass-borde);
+  border-radius: var(--ab-radio);
+}
+
+.ab-foto > i { font-size: 2.25rem; }
+.ab-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+.ab-avance figure { flex-basis: 42%; }
+
+@media (min-width: 768px) { .ab-avance figure { flex-basis: 24%; } }
+
+/* Estado del trabajo en 4 etapas */
+.ab-pasos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; padding: 0; list-style: none; }
+.ab-paso { font-size: 0.85rem; }
+
+.ab-paso::before {
+  content: "";
+  display: block;
+  height: 0.375rem;
+  margin-bottom: 0.5rem;
+  background: var(--ab-blanco);
+  border-radius: 1rem;
+}
+
+.ab-paso[data-estado="hecho"]::before,
+.ab-paso[data-estado="actual"]::before { background: var(--ab-azul); }
+.ab-paso[data-estado="actual"] { font-weight: 600; }
+.ab-paso[data-estado="actual"]::before { box-shadow: 0 0 0.5rem var(--ab-celeste); }
+.ab-paso[data-estado="pendiente"] { opacity: 0.8; }
+
+/* Listas dentro de cards glass */
+.ab-lista { display: grid; gap: 0.5rem; padding: 0; list-style: none; }
+.ab-lista li { display: flex; justify-content: space-between; gap: 1rem; }
+
+/* ---------- 14. Formularios de cuenta (registro y login) ---------- */
+:root {
+  /* Rojo claro para errores: el de Bootstrap casi no se lee sobre fondo oscuro */
+  --bs-form-invalid-color: #FF9B9B;
+  --bs-form-invalid-border-color: #FF9B9B;
+}
+
+.ab-auth { max-width: 28rem; }
+
+.ab-form .form-control {
+  color: var(--ab-blanco);
+  background: var(--ab-glass-bg);
+  border-color: var(--ab-glass-borde);
+  border-radius: 0.75rem;
+}
+
+.ab-form .form-control::placeholder { color: rgba(255, 255, 255, 0.55); }
+
+.ab-form .form-control:focus {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--ab-celeste);
+  box-shadow: 0 0 0 0.25rem rgba(110, 168, 255, 0.25);
+}
+
+.ab-form .form-text { color: rgba(255, 255, 255, 0.75); }
+.ab-form .invalid-feedback:not(:empty) { display: block; }
+
+/* Botón ojo dentro del campo de contraseña */
+.ab-pass { position: relative; }
+.ab-pass .form-control { padding-right: 3rem; }
+
+.ab-pass button {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  color: var(--ab-blanco);
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.ab-pass button:hover { background: var(--ab-glass-bg); }
+
+/* Botón que se ve como enlace */
+.ab-enlace {
+  padding: 0;
+  color: var(--ab-celeste);
+  background: none;
+  border: 0;
+  text-decoration: underline;
+}
+
+.ab-enlace:hover { color: var(--ab-blanco); }
+
+/* ---------- 15. Galería ---------- */
+.ab-galeria figure { flex-basis: 42%; }
+
+/* Resalte azul al pasar por una foto (como en el wireframe) */
+.ab-galeria .ab-foto { transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.ab-galeria .ab-foto:hover { border-color: var(--ab-azul); box-shadow: 0 0 0 0.1875rem var(--ab-azul); }
+
+/* "Ver más": la fila deja de hacer scroll y se vuelve grilla */
+.ab-galeria.ab-expandido { flex-wrap: wrap; overflow: visible; scroll-snap-type: none; }
+.ab-galeria.ab-expandido figure { flex-basis: calc(50% - 0.5rem); }
+
+@media (min-width: 768px) {
+  .ab-galeria figure { flex-basis: 24%; }
+  .ab-galeria.ab-expandido figure { flex-basis: calc(25% - 0.75rem); }
+}
+
+@media (prefers-reduced-motion: reduce) { .ab-galeria .ab-foto { transition: none; } }
+
+/* ---------- 8. Escritorio ---------- */
+@media (min-width: 992px) {
+  .ab-card { width: 28rem; }
+  .ab-controles { right: 3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ab-card,
+  .ab-fondo { transition: none; }
+
+  .ab-h1-logo::after { animation: none; opacity: 0; }
+  .ab-brillo::before,
+  .ab-brillo::after { animation: none; }
+}

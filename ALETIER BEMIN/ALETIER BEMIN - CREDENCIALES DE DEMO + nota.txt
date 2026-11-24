@@ -1,0 +1,23 @@
+ALETIER BEMIN - CREDENCIALES DE DEMOSTRACION
+===========================================
+ 
+Cuenta de prueba para entrar a "Mi cuenta":
+ 
+  Correo:      demo@aletierbemin.cl
+  Contrasena:  Bemin2026
+ 
+Como probar el flujo completo:
+  1. Abre el sitio y toca la card "Mi cuenta" (o el menu).
+  2. Sin sesion iniciada, el sitio te lleva a "Inicia sesion".
+  3. Entra con la cuenta de prueba, o crea una nueva en "Registrate".
+  4. "Cerrar sesion" en Mi cuenta vuelve al login.
+ 
+Notas:
+  - Es una cuenta de demostracion: las credenciales estan en el codigo (assets/js/auth.js).
+  - Las cuentas creadas en "Registrate" se guardan solo en el navegador de quien las crea
+    y su contrasena no se verifica ni se guarda.
+  - La autenticacion real se implementara con PHP y base de datos.
+
+Nota sobre la publicación: No alcancé a publicar el sitio en GitHub Pages ni a dejar un enlace para verlo en línea. Al intentar subir los archivos, GitHub rechazó la carga porque uno o más archivos superaban el tamaño permitido. Por falta de tiempo, envío el sitio con los archivos que logré desarrollar hasta el momento, aunque no quedó disponible mediante un enlace público.
+
+PD: El sitio web está incompleto: quedan un par de páginas por terminar, esto debido a que están ligadas a la implementación de php y base de datos. Por falta de tiempo, debido a mis responsabilidades laborales, quehaceres e imprevistos en casa, no alcancé a completarlo al 100 % antes de la entrega. Envío el trabajo con todo lo que logré avanzar hasta el momento. 

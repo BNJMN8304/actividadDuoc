@@ -1,0 +1,159 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Configurador Bemin: sube una foto de tu auto, elige colores, vinilos, gráficos o body kits y recibe una cotización estimada.">
+  <title>Configurador Bemin | Aletier Bemin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Menú desplegable (igual en todas las paginas) -->
+  <div class="offcanvas offcanvas-start ab-offcanvas" tabindex="-1" id="menuPrincipal" aria-labelledby="menuPrincipalTitulo">
+    <div class="offcanvas-header">
+      <h2 class="offcanvas-title h5" id="menuPrincipalTitulo">Menú</h2>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar menú"></button>
+    </div>
+    <nav class="offcanvas-body" aria-label="Navegación principal">
+      <a class="ab-nav-link" href="index.html">Inicio</a>
+      <a class="ab-nav-link" href="configuradorBemin.html" aria-current="page">Configurador Bemin</a>
+      <a class="ab-nav-link" href="galeria.html">Galería</a>
+      <a class="ab-nav-link" href="servicios.html">Servicios</a>
+      <a class="ab-nav-link" href="perfil.html">Mi cuenta</a>
+    </nav>
+  </div>
+
+  <!-- Fondo fijo -->
+  <div class="ab-fondos" aria-hidden="true">
+    <div class="ab-fondo ab-fondo-configurador activo"></div>
+  </div>
+
+  <header class="ab-header">
+    <button class="btn btn-ab-glass ab-menu-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-label="Abrir menú">
+      <i class="bi bi-list" aria-hidden="true"></i>
+    </button>
+    <a class="ab-logo" href="index.html">
+      <img src="assets/img/logoAB.svg" alt="Aletier Bemin, ir al inicio">
+    </a>
+    <span></span>
+  </header>
+
+  <main class="container ab-config" id="contenido">
+    <h1 class="visually-hidden">Configurador Bemin</h1>
+
+    <!-- Indicador de pasos (el paso 3 es agendar.html) -->
+    <p class="mb-2" id="paso-texto">Paso 1 de 3</p>
+    <div class="progress ab-progreso mb-4" role="progressbar" aria-label="Avance del configurador" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar" id="paso-barra"></div>
+    </div>
+
+    <!-- ===== PASO 1: foto y estilo ===== -->
+    <section id="paso-1" aria-labelledby="titulo-foto">
+      <h2 class="h5 mb-3" id="titulo-foto" tabindex="-1">1. Sube una foto de tu auto</h2>
+      <label class="ab-dropzone" for="foto">
+        <input type="file" id="foto" accept="image/*">
+        <img class="ab-preview" id="foto-preview" alt="Vista previa de la foto de tu auto" hidden>
+        <i class="bi bi-upload" aria-hidden="true" id="foto-icono"></i>
+        <span id="foto-texto">Subir foto</span>
+      </label>
+      <p class="small mt-2 mb-0" id="foto-aviso" role="status"></p>
+
+      <h2 class="h5 mt-5 mb-3">2. Escoge tu estilo</h2>
+      <div class="ab-tabs mb-3" role="tablist" aria-label="Categorías de personalización">
+        <button class="ab-tab" type="button" role="tab" id="tab-colores" data-cat="colores" aria-selected="true" aria-controls="catalogo">Colores</button>
+        <button class="ab-tab" type="button" role="tab" id="tab-vinilos" data-cat="vinilos" aria-selected="false" aria-controls="catalogo" tabindex="-1">Vinilos</button>
+        <button class="ab-tab" type="button" role="tab" id="tab-graficos" data-cat="graficos" aria-selected="false" aria-controls="catalogo" tabindex="-1">Gráficos y Grabados</button>
+        <button class="ab-tab" type="button" role="tab" id="tab-bodykits" data-cat="bodykits" aria-selected="false" aria-controls="catalogo" tabindex="-1">Body kits</button>
+      </div>
+      <div class="ab-tiles" id="catalogo" role="tabpanel" aria-labelledby="tab-colores"></div>
+
+      <div class="text-center mt-5">
+        <button class="btn btn-ab btn-lg" type="button" id="btn-ver" disabled aria-describedby="ver-ayuda">Ver cómo queda mi auto</button>
+        <p class="small mt-2 mb-0" id="ver-ayuda">Sube una foto y elige al menos una opción.</p>
+      </div>
+    </section>
+
+    <!-- ===== PASO 2: resultado y cotización ===== -->
+    <section id="paso-2" aria-labelledby="titulo-resultado" hidden>
+      <h2 class="h5 text-center mb-3" id="titulo-resultado" tabindex="-1">Tu auto personalizado</h2>
+
+      <div class="ab-comparador" id="comparador">
+        <img id="img-antes" alt="Tu auto sin cambios">
+        <canvas id="img-despues" role="img" aria-label="Simulación de tu auto con el estilo elegido"></canvas>
+        <span class="ab-comp-etiqueta ab-comp-etiqueta--antes" aria-hidden="true">Antes</span>
+        <span class="ab-comp-etiqueta ab-comp-etiqueta--despues" aria-hidden="true">Después</span>
+        <div class="ab-comp-linea" aria-hidden="true"></div>
+        <input type="range" id="comp-rango" min="0" max="100" value="50" aria-label="Comparador antes y después: desliza para ver cada lado">
+      </div>
+      <p class="small mt-2">Por ahora la simulación solo aplica el color. Los demás elementos van a la cotización.</p>
+
+      <div class="text-center my-4">
+        <button class="btn btn-ab btn-ab-vidrio btn-lg" type="button" id="btn-cambiar">Cambiar estilo</button>
+      </div>
+
+      <h2 class="h5 mb-3">Guardar y compartir</h2>
+      <div class="d-flex flex-wrap gap-3">
+        <button class="btn btn-ab" type="button" id="btn-guardar">Guardar diseño</button>
+        <button class="btn btn-ab btn-ab-vidrio" type="button" id="btn-compartir">Compartir</button>
+      </div>
+      <p class="small mt-2 mb-0" id="aviso-accion" role="status"></p>
+
+      <h2 class="h5 mt-5 mb-3">Cotización estimada</h2>
+      <div class="ab-glass">
+        <table class="ab-cotiza">
+          <caption class="visually-hidden">Detalle de la cotización estimada</caption>
+          <tbody id="cotiza-filas"></tbody>
+          <tfoot>
+            <tr><th scope="row">Total estimado</th><td id="cotiza-total"></td></tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="text-center mt-4">
+        <a class="btn btn-ab btn-lg" href="agendar.html" id="btn-agendar">Agendar hora</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="ab-footer" id="contacto">
+    <div class="container">
+      <div class="row g-4 align-items-start">
+        <div class="col-12 col-md-6">
+          <h2 class="h5">Contacto</h2>
+          <!-- TODO: reemplazar por los datos reales del taller -->
+          <address class="mb-0">
+            <a href="mailto:contacto@aletierbemin.cl">contacto@aletierbemin.cl</a><br>
+            <a href="tel:+56900000000">+56 9 0000 0000</a><br>
+            Viña del Mar, Región de Valparaíso
+          </address>
+        </div>
+        <nav class="col-12 col-md-6" aria-label="Redes sociales">
+          <ul class="ab-social list-unstyled d-flex gap-3 mb-0 justify-content-md-end">
+            <li><a class="btn btn-ab-glass" href="#" aria-label="Instagram de Aletier Bemin"><i class="bi bi-instagram" aria-hidden="true"></i></a></li>
+            <li><a class="btn btn-ab-glass" href="#" aria-label="WhatsApp de Aletier Bemin"><i class="bi bi-whatsapp" aria-hidden="true"></i></a></li>
+            <li><a class="btn btn-ab-glass" href="#" aria-label="Facebook de Aletier Bemin"><i class="bi bi-facebook" aria-hidden="true"></i></a></li>
+            <li><a class="btn btn-ab-glass" href="#" aria-label="TikTok de Aletier Bemin"><i class="bi bi-tiktok" aria-hidden="true"></i></a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="ab-legales small mt-4">
+        <a href="#">Términos y condiciones</a>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Créditos de imágenes y licencias</a>
+      </div>
+      <p class="small mt-3 mb-0">&copy; 2026 Aletier Bemin. Proyecto Integrado, Duoc UC.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/configurador.js"></script>
+</body>
+</html>

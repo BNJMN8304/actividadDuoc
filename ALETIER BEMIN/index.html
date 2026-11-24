@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aletier Bemin: personalización y mantención automotriz en la V Región. Configura tu auto, cotiza y agenda en línea.">
+  <title>Aletier Bemin | Personalización y mantención automotriz</title>
+
+  <!-- Fuentes de la guía de estilos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 + Bootstrap Icons (íconos provisorios hasta usar los de la guía) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Estilos propios (siempre después de Bootstrap) -->
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ===== Menú desplegable (arriba a la izquierda) ===== -->
+  <div class="offcanvas offcanvas-start ab-offcanvas" tabindex="-1" id="menuPrincipal" aria-labelledby="menuPrincipalTitulo">
+    <div class="offcanvas-header">
+      <h2 class="offcanvas-title h5" id="menuPrincipalTitulo">Menú</h2>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar menú"></button>
+    </div>
+    <nav class="offcanvas-body" aria-label="Navegación principal">
+      <a class="ab-nav-link" href="index.html" aria-current="page">Inicio</a>
+      <a class="ab-nav-link" href="configuradorBemin.html">Configurador Bemin</a>
+      <a class="ab-nav-link" href="galeria.html">Galería</a>
+      <a class="ab-nav-link" href="servicios.html">Servicios</a>
+      <a class="ab-nav-link" href="perfil.html">Mi cuenta</a>
+    </nav>
+  </div>
+
+  <!-- ===== Fondos fijos (uno por página, cambian con el carrusel) ===== -->
+  <div class="ab-fondos" aria-hidden="true">
+    <div class="ab-fondo ab-fondo-inicio activo" data-fondo></div>
+    <div class="ab-fondo ab-fondo-configurador" data-fondo></div>
+    <div class="ab-fondo ab-fondo-galeria" data-fondo></div>
+    <div class="ab-fondo ab-fondo-perfil" data-fondo></div>
+    <div class="ab-fondo ab-fondo-servicios" data-fondo></div>
+  </div>
+
+  <!-- ===== Hero: header + carrusel ===== -->
+  <div class="ab-escena">
+
+
+    <header class="ab-header">
+      <button class="btn btn-ab-glass ab-menu-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-label="Abrir menú">
+        <i class="bi bi-list" aria-hidden="true"></i>
+      </button>
+      <a class="ab-logo" href="index.html">
+        <img src="assets/img/logotipo.svg" alt="Aletier Bemin, ir al inicio">
+      </a>
+      <span></span>
+    </header>
+
+    <div class="ab-rueda-wrap">
+      <div class="container-fluid px-0 position-relative">
+        <!-- Aviso para lectores de pantalla cuando cambia la card -->
+        <p class="visually-hidden" role="status" aria-live="polite" data-aviso></p>
+
+        <ul class="ab-rueda" data-rueda tabindex="0" role="group" aria-roledescription="carrusel" aria-label="Secciones del sitio. Usa las flechas arriba y abajo para cambiar.">
+
+          <li class="ab-card" data-card>
+            <span class="ab-card-icono" aria-hidden="true"><i class="bi bi-house"></i></span>
+            <div class="ab-card-texto">
+              <p class="ab-card-titulo">Inicio</p>
+              <p>Personalización y mantención automotriz con sello italiano, ahora en la V Región.</p>
+              <a class="btn btn-ab" href="#bienvenida">Ver más</a>
+            </div>
+          </li>
+
+          <li class="ab-card" data-card>
+            <span class="ab-card-icono" aria-hidden="true"><i class="bi bi-sliders"></i></span>
+            <div class="ab-card-texto">
+              <p class="ab-card-titulo">Configurador Bemin</p>
+              <p>Sube una foto de tu auto, prueba bodykits, vinilos y pintura, y cotiza al tiro.</p>
+              <a class="btn btn-ab" href="configuradorBemin.html">Ver más</a>
+            </div>
+          </li>
+
+          <li class="ab-card" data-card>
+            <span class="ab-card-icono" aria-hidden="true"><i class="bi bi-images"></i></span>
+            <div class="ab-card-texto">
+              <p class="ab-card-titulo">Galería</p>
+              <p>Trabajos reales con comparador de antes y después, ordenados por categoría.</p>
+              <a class="btn btn-ab" href="galeria.html">Ver más</a>
+            </div>
+          </li>
+
+          <li class="ab-card" data-card>
+            <span class="ab-card-icono" aria-hidden="true"><i class="bi bi-person-circle"></i></span>
+            <div class="ab-card-texto">
+              <p class="ab-card-titulo">Mi cuenta</p>
+              <p>Revisa tus cotizaciones, tus horas agendadas y el avance de tu auto.</p>
+              <a class="btn btn-ab" href="perfil.html">Ver más</a>
+            </div>
+          </li>
+
+          <li class="ab-card" data-card>
+            <span class="ab-card-icono" aria-hidden="true"><i class="bi bi-tools"></i></span>
+            <div class="ab-card-texto">
+              <p class="ab-card-titulo">Servicios</p>
+              <p>Bodykits, vinilos, pintura y mantención, con valores de referencia.</p>
+              <a class="btn btn-ab" href="servicios.html">Ver más</a>
+            </div>
+          </li>
+        </ul>
+
+        <div class="ab-controles">
+          <button class="btn btn-ab-glass" type="button" data-prev aria-label="Sección anterior"><i class="bi bi-chevron-up" aria-hidden="true"></i></button>
+          <button class="btn btn-ab-glass" type="button" data-next aria-label="Sección siguiente"><i class="bi bi-chevron-down" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main id="contenido">
+  <!-- ===== Bienvenida: H1 (logotipo con destello) + cards de texto ===== -->
+  <section class="ab-seccion text-center" id="bienvenida" aria-labelledby="titulo-home">
+    <div class="container">
+      <h1 class="ab-h1-logo" id="titulo-home">
+        <img src="assets/img/logotipo.svg" alt="Aletier Bemin" width="219" height="21">
+      </h1>
+      <p class="ab-lead mx-auto">Tradición italiana en personalización y mantención automotriz, ahora en la Región de Valparaíso.</p>
+
+      <div class="row g-4 mt-2 text-start">
+        <div class="col-12 col-md-4">
+          <div class="ab-glass ab-brillo">
+            <h2 class="h5">Visualiza antes de decidir</h2>
+            <p class="mb-0">Prueba cambios en una foto de tu auto desde el Configurador Bemin.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="ab-glass ab-brillo">
+            <h2 class="h5">Cotiza y agenda en línea</h2>
+            <p class="mb-0">Recibe tu cotización y reserva hora con abono por Webpay.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="ab-glass ab-brillo">
+            <h2 class="h5">Sigue tu auto</h2>
+            <p class="mb-0">Mira el estado del trabajo desde tu cuenta, sin llamar al taller.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-5 mb-3">Mira cómo quedará tu auto antes de empezar.</p>
+      <a class="btn btn-ab btn-lg" href="configuradorBemin.html">Configura tu auto</a>
+    </div>
+  </section>
+
+  <br>
+</br>
+
+
+  <!-- ===== Servicios destacados ===== -->
+  <section class="ab-seccion pt-0" aria-labelledby="titulo-servicios">
+    <div class="container">
+      <h2 id="titulo-servicios" class="mb-4 text-center">Servicios destacados</h2>
+      <div class="row g-3 justify-content-center">
+        <div class="col-6 col-md-4 col-lg-3">
+          <article class="ab-servicio">
+            <img src="assets/img/servicio-personalización.jpg" alt="Técnico revisando la pintura de un auto rojo" loading="lazy">
+            <a class="btn btn-ab w-100" href="servicios.html#personalizacion">Personalización</a>
+          </article>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <article class="ab-servicio">
+            <img src="assets/img/servicio-mantención.jpg" alt="Motor de un auto en mantención" loading="lazy">
+            <a class="btn btn-ab w-100" href="servicios.html#mantencion">Mantención</a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Trabajos destacados ===== -->
+  <section class="ab-seccion pt-0" aria-labelledby="titulo-trabajos">
+    <div class="container">
+      <h2 id="titulo-trabajos" class="mb-4 text-center">Trabajos destacados</h2>
+      <div class="ab-trabajos" tabindex="0" role="region" aria-label="Trabajos destacados, desliza para ver más">
+        <figure><img src="assets/img/auto5.jpg" alt="Dos autos azules estacionados frente al taller" loading="lazy"></figure>
+        <figure><img src="assets/img/auto7.jpg" alt="Auto plateado con vinilo personalizado" loading="lazy"></figure>
+        <figure><img src="assets/img/auto8.jpeg" alt="Auto oscuro terminado en el taller" loading="lazy"></figure>
+        <figure><img src="assets/img/auto2.jpg" alt="Trabajo de personalización 4" loading="lazy"></figure>
+        <figure><img src="assets/img/auto1.jpg" alt="Trabajo de personalización 5" loading="lazy"></figure>
+      </div>
+      <div class="text-center mt-4">
+        <a class="btn btn-ab" href="galeria.html">Ver galería</a>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="ab-footer" id="contacto">
+    <div class="container">
+      <div class="row g-4 align-items-start">
+        <div class="col-12 col-md-6">
+          <h2 class="h5">Contacto</h2>
+          <!-- Datos a remplazar cuando el sitio tenga base de datos implementada -->
+          <address class="mb-0">
+            <a href="mailto:contacto@aletierbemin.cl">contacto@aletierbemin.cl</a><br>
+            <a href="tel:+56900000000">+56 9 0000 0000</a><br>
+            Viña del Mar, Región de Valparaíso
+          </address>
+        </div>
+        <nav class="col-12 col-md-6" aria-label="Redes sociales">
+          <ul class="ab-social list-unstyled d-flex gap-3 mb-0 justify-content-md-end">
+            <li><a class="btn btn-ab-glass" href="#" aria-label="Instagram de Aletier Bemin"><i class="bi bi-instagram" aria-hidden="true"></i></a></li>
+            <li><a class="btn btn-ab-glass" href="#" aria-label="WhatsApp de Aletier Bemin"><i class="bi bi-whatsapp" aria-hidden="true"></i></a></li>
+            <li><a class="btn btn-ab-glass" href="#" aria-label="Facebook de Aletier Bemin"><i class="bi bi-facebook" aria-hidden="true"></i></a></li>
+            <li><a class="btn btn-ab-glass" href="#" aria-label="TikTok de Aletier Bemin"><i class="bi bi-tiktok" aria-hidden="true"></i></a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="ab-legales small mt-4">
+        <a href="#">Términos y condiciones</a>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Créditos de imágenes y licencias</a>
+      </div>
+      <p class="small mt-3 mb-0">&copy; 2026 Aletier Bemin. Proyecto Integrado, Duoc UC.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

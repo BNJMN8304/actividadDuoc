@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Agenda tu hora en Aletier Bemin: elige día y horario disponible, revisa tu reserva y paga el abono.">
+  <title>Agenda tu hora | Aletier Bemin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="offcanvas offcanvas-start ab-offcanvas" tabindex="-1" id="menuPrincipal" aria-labelledby="menuPrincipalTitulo">
+    <div class="offcanvas-header">
+      <h2 class="offcanvas-title h5" id="menuPrincipalTitulo">Menú</h2>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar menú"></button>
+    </div>
+    <nav class="offcanvas-body" aria-label="Navegación principal">
+      <a class="ab-nav-link" href="index.html">Inicio</a>
+      <a class="ab-nav-link" href="configuradorBemin.html">Configurador Bemin</a>
+      <a class="ab-nav-link" href="galeria.html">Galería</a>
+      <a class="ab-nav-link" href="servicios.html">Servicios</a>
+      <a class="ab-nav-link" href="perfil.html">Mi cuenta</a>
+    </nav>
+  </div>
+
+  <div class="ab-fondos" aria-hidden="true">
+    <div class="ab-fondo ab-fondo-configurador activo"></div>
+  </div>
+
+  <header class="ab-header">
+    <button class="btn btn-ab-glass ab-menu-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-label="Abrir menú">
+      <i class="bi bi-list" aria-hidden="true"></i>
+    </button>
+    <a class="ab-logo" href="index.html">
+      <img src="assets/img/logoAB.svg" alt="Aletier Bemin, ir al inicio">
+    </a>
+    <span></span>
+  </header>
+
+  <main class="container ab-config" id="contenido">
+    <p class="mb-2">Paso 3 de 3</p>
+    <div class="progress ab-progreso mb-4" role="progressbar" aria-label="Avance de la reserva" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar ab-progreso-completo"></div>
+    </div>
+
+    <h1 class="mb-4">Agenda tu hora</h1>
+
+    <div id="reserva">
+      <!-- ===== Calendario ===== -->
+      <section aria-labelledby="titulo-dia">
+        <h2 class="h5 mb-3" id="titulo-dia">Elige un día</h2>
+        <div class="ab-glass ab-cal">
+          <div class="ab-cal-cabecera">
+            <button class="btn btn-ab-glass" type="button" id="mes-ant" aria-label="Mes anterior"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+            <p class="mb-0 fw-semibold" id="cal-mes" aria-live="polite"></p>
+            <button class="btn btn-ab-glass" type="button" id="mes-sig" aria-label="Mes siguiente"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+          </div>
+          <div class="ab-cal-grid" id="cal-dias" role="group" aria-label="Días del mes"></div>
+          <ul class="ab-cal-leyenda list-unstyled mb-0">
+            <li><span class="ab-punto ab-punto--libre" aria-hidden="true"></span>Disponible</li>
+            <li><span class="ab-punto ab-punto--reservado" aria-hidden="true"></span>Reservado</li>
+            <li><span class="ab-punto ab-punto--elegido" aria-hidden="true"></span>Tu elección</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== Horas ===== -->
+      <section class="mt-4" aria-labelledby="titulo-hora">
+        <h2 class="h5 mb-3" id="titulo-hora">Elige tu hora</h2>
+        <p class="small mb-0" id="horas-ayuda">Primero elige un día.</p>
+        <div class="ab-horas" id="horas" role="group" aria-labelledby="titulo-hora" hidden></div>
+      </section>
+
+      <!-- ===== Resumen ===== -->
+      <section class="mt-5" aria-labelledby="titulo-resumen">
+        <div class="ab-glass ab-brillo">
+          <h2 class="h5 mb-3" id="titulo-resumen">Resumen de tu reserva</h2>
+          <table class="ab-cotiza">
+            <caption class="visually-hidden">Resumen de la reserva</caption>
+            <tbody>
+              <tr><th scope="row">Servicio</th><td id="res-servicio"></td></tr>
+              <tr><th scope="row">Fecha y hora</th><td id="res-fecha">Sin elegir</td></tr>
+              <tr><th scope="row">Abono (50%)</th><td id="res-abono"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== Pago ===== -->
+      <section class="mt-4" aria-labelledby="titulo-pago">
+        <h2 class="h5 mb-3" id="titulo-pago">Pago del abono</h2>
+        <fieldset class="mb-3">
+          <legend class="visually-hidden">Método de pago</legend>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="pago" id="pago-webpay" value="webpay" checked>
+            <label class="form-check-label" for="pago-webpay">Tarjeta con Webpay</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="pago" id="pago-transf" value="transferencia">
+            <label class="form-check-label" for="pago-transf">Transferencia bancaria</label>
+          </div>
+        </fieldset>
+
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="terminos">
+          <label class="form-check-label" for="terminos">Acepto <a href="#">términos y condiciones</a></label>
+        </div>
+
+        <p class="ab-error" id="reserva-error" role="alert"></p>
+        <div class="text-center">
+          <button class="btn btn-ab btn-lg" type="button" id="btn-pagar">Pagar abono con Webpay</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===== Confirmación (demo) ===== -->
+    <section id="confirmacion" aria-labelledby="titulo-conf" hidden>
+      <div class="ab-glass ab-brillo">
+        <h2 class="h4" id="titulo-conf" tabindex="-1">Reserva registrada</h2>
+        <p class="small">Modo demostración: no se realizó ningún cobro.</p>
+        <p>Código de reserva: <strong id="conf-codigo"></strong></p>
+        <p id="conf-detalle"></p>
+        <div id="conf-transf" hidden>
+          <h3 class="h6">Datos para transferir</h3>
+          <!-- TODO: reemplazar por los datos bancarios reales -->
+          <ul class="list-unstyled">
+            <li>Banco: [banco]</li>
+            <li>Cuenta: [tipo y número de cuenta]</li>
+            <li>Titular y RUT: [titular, RUT]</li>
+            <li>Correo de comprobante: contacto@aletierbemin.cl</li>
+          </ul>
+        </div>
+        <p id="conf-webpay" hidden>En la versión final, aquí te llevamos a Webpay para pagar el abono con tarjeta.</p>
+        <a class="btn btn-ab mt-2" href="index.html">Volver al inicio</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ab-footer" id="contacto">
+    <div class="container">
+      <div class="row g-4 align-items-start">
+        <div class="col-12 col-md-6">
+          <h2 class="h5">Contacto</h2>
+          <address class="mb-0">
+            <a href="mailto:contacto@aletierbemin.cl">contacto@aletierbemin.cl</a><br>
+            <a href="tel:+56900000000">+56 9 0000 0000</a><br>
+            Viña del Mar, Región de Valparaíso
+          </address>
+        </div>
+        <nav class="col-12 col-md-6" aria-label="Redes sociales">
+          <ul class="ab-social list-unstyled d-flex gap-3 mb-0 justify-content-md-end">
+            <li><a class="btn btn-ab-glass" href="#" aria-label="Instagram de Aletier Bemin"><i class="bi bi-instagram" aria-hidden="true"></i></a></li>
+            <li><a class="btn btn-ab-glass" href="#" aria-label="WhatsApp de Aletier Bemin"><i class="bi bi-whatsapp" aria-hidden="true"></i></a></li>
+            <li><a class="btn btn-ab-glass" href="#" aria-label="Facebook de Aletier Bemin"><i class="bi bi-facebook" aria-hidden="true"></i></a></li>
+            <li><a class="btn btn-ab-glass" href="#" aria-label="TikTok de Aletier Bemin"><i class="bi bi-tiktok" aria-hidden="true"></i></a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="ab-legales small mt-4">
+        <a href="#">Términos y condiciones</a>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Créditos de imágenes y licencias</a>
+      </div>
+      <p class="small mt-3 mb-0">&copy; 2026 Aletier Bemin. Proyecto Integrado, Duoc UC.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/agendar.js"></script>
+</body>
+</html>
